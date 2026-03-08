@@ -1,0 +1,375 @@
+/* ==========================================================================
+   1. Variables & Theming
+   ========================================================================== */
+:root {
+  --text-color: #333;
+  --link-color: #0056b3;
+  --bg-color: #fff;
+  --nav-bg: #f8f9fa;
+  --border-color: #ddd;
+}
+
+[data-theme="dark"] {
+  --text-color: #e4e4e4;
+  --link-color: #66b2ff;
+  --bg-color: #121212;
+  --nav-bg: #1e1e1e;
+  --border-color: #444;
+}
+
+/* ==========================================================================
+   2. Global & Base Styles
+   ========================================================================== */
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  line-height: 1.6;
+  color: var(--text-color);
+  background-color: var(--bg-color);
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 20px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+
+  /* Sticky Footer Flexbox */
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1; /* Forces the main content to grow and push the footer down */
+}
+
+h1, h2, h3 {
+  color: var(--text-color);
+}
+
+a {
+  color: var(--link-color);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+hr.separator {
+  border: 0;
+  border-top: 1px solid var(--border-color);
+  margin: 30px 0;
+}
+
+/* ==========================================================================
+   3. Header & Navigation
+   ========================================================================== */
+header {
+  border-bottom: 1px solid var(--border-color);
+  padding: 20px 0 10px 0;
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+header h2 {
+  margin: 0;
+}
+
+/* Header Site Title */
+header div a {
+  color: var(--text-color);
+  font-size: 1.5rem;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+header div a:hover {
+  color: var(--link-color);
+  text-decoration: none;
+}
+
+.hidden-title {
+  visibility: hidden;
+}
+
+/* Navigation Links */
+nav {
+  display: flex;
+  align-items: center;
+}
+
+nav a {
+  margin-left: 20px;
+  text-decoration: none;
+  color: var(--text-color);
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+nav a.active {
+  color: var(--link-color);
+}
+
+nav a:hover {
+  color: var(--link-color);
+  text-decoration: none;
+}
+
+/* Theme Toggle Button */
+#theme-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text-color);
+  margin-left: 20px;
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  transition: all 200ms ease;
+}
+
+#theme-toggle svg {
+  width: 20px;
+  height: 20px;
+}
+
+#theme-toggle:hover {
+  color: var(--link-color) !important;
+  transform: translateY(-2px);
+}
+
+/* ==========================================================================
+   4. About Page & Profile Section
+   ========================================================================== */
+.hero-title {
+  margin-top: 10px;
+  margin-bottom: 25px; /* Added more space between subtitle and content */
+}
+
+.hero-title h1 {
+  font-size: 3.2rem; /* Slightly larger to match the bold presence in the image */
+  font-weight: 500;
+  margin: 0 0 8px 0;
+  line-height: 1.2;
+}
+
+.hero-title h1 strong {
+  font-weight: 800; /* Extra bold for the first name */
+}
+
+.hero-title p {
+  font-size: 1.25rem;
+  font-weight: 700; /* Made bolder to match the screenshot */
+  margin: 0;
+  color: var(--text-color);
+  opacity: 0.9;
+}
+
+.profile-container {
+  display: flex;
+  gap: 50px; /* Widened the gap between text and image for a cleaner look */
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 40px;
+}
+
+/* Specifically targets the text column to fill available space */
+.profile-container > div:first-child {
+  flex: 1;
+  line-height: 1.7; /* Slightly more breathable text */
+}
+
+.profile-container > div:first-child p:first-child {
+  margin-top: 0; /* Ensures the text aligns perfectly with the top of the image */
+}
+
+.profile-pic-column {
+  flex: 0 0 240px; /* Sets a fixed, slightly larger width for the right column */
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.profile-pic {
+  width: 100%;
+  border-radius: 12px; /* Softer, more modern rounded corners like the image */
+  box-shadow: 0 6px 16px rgba(0,0,0,0.08); /* Softer, more diffused shadow */
+  object-fit: cover;
+}
+
+/* Social Icons */
+.social-icons {
+  display: flex;
+  gap: 18px; /* Slightly more breathing room between icons */
+  margin-top: 20px;
+  justify-content: center;
+  width: 100%;
+}
+
+.social-icons a {
+  color: var(--text-color);
+  opacity: 0.55; /* Makes them a more subtle grey, like the screenshot */
+  display: inline-block;
+  transition: color 0.3s ease, opacity 0.3s ease, transform 0.2s ease;
+}
+
+.social-icons a svg {
+  width: 26px; /* Slightly larger icons */
+  height: 26px;
+}
+
+.social-icons a:hover {
+  opacity: 1;
+  color: var(--link-color) !important;
+  transform: translateY(-2px);
+}
+
+/* ==========================================================================
+   5. News Section
+   ========================================================================== */
+.news-section {
+  background: var(--nav-bg);
+  padding: 15px 20px;
+  border-radius: 5px;
+}
+
+.news-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.news-item {
+  display: flex;
+  margin-bottom: 12px;
+  align-items: baseline;
+}
+
+.news-date {
+  flex: 0 0 90px;
+  font-weight: 600;
+  color: var(--text-color);
+  font-size: 0.95rem;
+}
+
+.news-text {
+  flex: 1;
+  margin-left: 15px;
+}
+
+/* ==========================================================================
+   6. Research Page & Publications
+   ========================================================================== */
+/* Exceptions for links inside h2 tags (like university links) */
+main h2 a {
+  color: var(--text-color);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+main h2 a:hover {
+  color: var(--link-color);
+  text-decoration: underline;
+}
+
+.pub-item {
+  margin-bottom: 20px;
+}
+
+.pub-title {
+  font-weight: bold;
+}
+
+.pub-authors {
+  color: var(--text-color);
+}
+
+.pub-venue {
+  font-style: italic;
+}
+
+/* Publication Venue Links (arXiv / Journal) */
+.pub-venue a.venue-text-link {
+  color: var(--text-color);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.pub-venue a.venue-text-link:hover {
+  color: var(--link-color);
+  text-decoration: underline;
+}
+
+/* Publication Icon Links (GitHub) */
+.pub-venue a.venue-icon-link {
+  color: var(--text-color);
+  display: inline-block;
+  transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.pub-venue a.venue-icon-link:hover {
+  color: var(--link-color) !important;
+  transform: translateY(-2px);
+}
+
+/* Old standard publication link buttons (kept for backward compatibility) */
+.pub-links a {
+  font-size: 0.9em;
+  border: 1px solid var(--link-color);
+  padding: 2px 8px;
+  border-radius: 4px;
+  margin-right: 5px;
+  text-decoration: none;
+}
+
+.pub-links a:hover {
+  background-color: var(--link-color);
+  color: var(--bg-color);
+}
+
+/* ==========================================================================
+   7. Footer
+   ========================================================================== */
+footer {
+  text-align: center;
+  padding-bottom: 30px;
+  color: var(--text-color);
+  opacity: 0.6;
+  font-size: 0.85rem;
+}
+
+footer p {
+  margin: 0;
+}
+
+/* ==========================================================================
+   8. Responsive Design (Mobile Support)
+   ========================================================================== */
+@media (max-width: 768px) {
+  /* Scale down the massive hero title for smaller screens */
+  .hero-title h1 {
+    font-size: 2.4rem;
+  }
+
+  .hero-title p {
+    font-size: 1.1rem;
+  }
+
+  /* Stack the text and the image vertically */
+  .profile-container {
+    flex-direction: column-reverse; /* Puts the image above the text on mobile. Use 'column' if you want text first. */
+    gap: 30px;
+    align-items: center; /* Centers the image */
+  }
+
+  .profile-container > div:first-child {
+    width: 100%; /* Ensures the text takes up the full width once stacked */
+  }
+
+  /* Reset the image column constraints */
+  .profile-pic-column {
+    flex: auto;
+    width: 100%;
+    max-width: 240px; /* Prevents the image from becoming massive on tablets */
+  }
+}
