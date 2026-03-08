@@ -346,30 +346,55 @@ footer p {
    8. Responsive Design (Mobile Support)
    ========================================================================== */
 @media (max-width: 768px) {
-  /* Scale down the massive hero title for smaller screens */
+  /* --- 1. Header & Navigation Fixes --- */
+  header {
+    flex-direction: column; /* Stacks your name above the menu */
+    gap: 15px; /* Adds space between your name and the menu */
+    padding-bottom: 15px;
+  }
+
+  header div a {
+    font-size: 1.3rem; /* Slightly shrinks your name in the top left */
+  }
+
+  nav {
+    width: 100%;
+    justify-content: center; /* Centers all the links */
+    flex-wrap: wrap; /* Allows links to wrap if the screen is super narrow */
+    gap: 15px; /* Adds even spacing between links */
+  }
+
+  nav a {
+    margin-left: 0; /* Removes the rigid desktop margins */
+  }
+
+  #theme-toggle {
+    margin-left: 0;
+  }
+
+  /* --- 2. About Page Layout Fixes --- */
   .hero-title h1 {
     font-size: 2.4rem;
   }
 
   .hero-title p {
     font-size: 1.1rem;
+    text-align: center; /* Centers the subtitle nicely on mobile */
   }
 
-  /* Stack the text and the image vertically */
   .profile-container {
-    flex-direction: column-reverse; /* Puts the image above the text on mobile. Use 'column' if you want text first. */
+    flex-direction: column-reverse; /* Puts image above text */
     gap: 30px;
-    align-items: center; /* Centers the image */
+    align-items: center;
   }
 
   .profile-container > div:first-child {
-    width: 100%; /* Ensures the text takes up the full width once stacked */
+    width: 100%;
   }
 
-  /* Reset the image column constraints */
   .profile-pic-column {
     flex: auto;
     width: 100%;
-    max-width: 240px; /* Prevents the image from becoming massive on tablets */
+    max-width: 240px;
   }
 }
