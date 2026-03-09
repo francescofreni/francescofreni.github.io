@@ -348,6 +348,355 @@ footer p {
 }
 
 /* ==========================================================================
+   1. Variables & Theming
+   ========================================================================== */
+:root {
+  --text-color: #333;
+  --link-color: #0056b3;
+  --bg-color: #fff;
+  --nav-bg: #f8f9fa;
+  --border-color: #ddd;
+}
+
+[data-theme="dark"] {
+  --text-color: #e4e4e4;
+  --link-color: #66b2ff;
+  --bg-color: #121212;
+  --nav-bg: #1e1e1e;
+  --border-color: #444;
+}
+
+/* ==========================================================================
+   2. Global & Base Styles
+   ========================================================================== */
+body {
+  font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+  line-height: 1.6;
+  color: var(--text-color);
+  background-color: var(--bg-color);
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 20px;
+  transition: background-color 0.3s ease, color 0.3s ease;
+
+  /* Sticky Footer Flexbox */
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+main {
+  flex: 1; /* Forces the main content to grow and push the footer down */
+}
+
+h1, h2, h3 {
+  color: var(--text-color);
+}
+
+a {
+  color: var(--link-color);
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+hr.separator {
+  border: 0;
+  border-top: 1px solid var(--border-color);
+  margin: 30px 0;
+}
+
+/* ==========================================================================
+   3. Header & Navigation
+   ========================================================================== */
+header {
+  border-bottom: 1px solid var(--border-color);
+  padding: 20px 0 10px 0;
+  margin-bottom: 30px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  position: relative; /* Needed to anchor the mobile dropdown */
+}
+
+header h2 {
+  margin: 0;
+}
+
+/* Header Site Title */
+header div a {
+  color: var(--text-color);
+  font-size: 1.5rem;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+header div a:hover {
+  color: var(--link-color);
+  text-decoration: none;
+}
+
+.hidden-title {
+  visibility: hidden;
+}
+
+/* Navigation Links */
+nav {
+  display: flex;
+  align-items: center;
+}
+
+nav a {
+  margin-left: 20px;
+  text-decoration: none;
+  color: var(--text-color);
+  font-weight: 500;
+  transition: color 0.3s ease;
+}
+
+nav a.active {
+  color: var(--link-color);
+}
+
+nav a:hover {
+  color: var(--link-color);
+  text-decoration: none;
+}
+
+/* Theme Toggle Button */
+#theme-toggle {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: var(--text-color);
+  margin-left: 20px;
+  display: flex;
+  align-items: center;
+  padding: 5px;
+  transition: transform 0.2s ease;
+}
+
+#theme-toggle svg {
+  width: 20px;
+  height: 20px;
+}
+
+#theme-toggle:hover {
+  color: var(--link-color) !important;
+  transform: translateY(-2px);
+}
+
+/* Hamburger Icon Base (Hidden on Desktop) */
+.hamburger {
+  display: none;
+  cursor: pointer;
+  border: none;
+  background: none;
+  padding: 0;
+  z-index: 1000;
+}
+
+.hamburger .bar {
+  display: block;
+  width: 25px;
+  height: 3px;
+  margin: 5px auto;
+  transition: all 0.3s ease-in-out;
+  background-color: var(--text-color);
+  border-radius: 3px;
+}
+
+/* ==========================================================================
+   4. About Page & Profile Section
+   ========================================================================== */
+.hero-title {
+  margin-top: 10px;
+  margin-bottom: 25px;
+}
+
+.hero-title h1 {
+  font-size: 3.2rem;
+  font-weight: 500;
+  margin: 0 0 8px 0;
+  line-height: 1.2;
+}
+
+.hero-title h1 strong {
+  font-weight: 800;
+}
+
+.hero-title p {
+  font-size: 1.25rem;
+  font-weight: 700;
+  margin: 0;
+  color: var(--text-color);
+  opacity: 0.9;
+}
+
+.profile-container {
+  display: flex;
+  gap: 50px;
+  align-items: flex-start;
+  justify-content: space-between;
+  margin-bottom: 40px;
+}
+
+.profile-container > div:first-child {
+  flex: 1;
+  line-height: 1.7;
+}
+
+.profile-container > div:first-child p:first-child {
+  margin-top: 0;
+}
+
+.profile-pic-column {
+  flex: 0 0 240px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.profile-pic {
+  width: 100%;
+  border-radius: 12px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.08);
+  object-fit: cover;
+}
+
+/* Social Icons */
+.social-icons {
+  display: flex;
+  gap: 18px;
+  margin-top: 20px;
+  justify-content: center;
+  width: 100%;
+}
+
+.social-icons a {
+  color: var(--text-color);
+  opacity: 0.55;
+  display: inline-block;
+  transition: color 0.3s ease, opacity 0.3s ease, transform 0.2s ease;
+}
+
+.social-icons a svg {
+  width: 26px;
+  height: 26px;
+}
+
+.social-icons a:hover {
+  opacity: 1;
+  color: var(--link-color) !important;
+  transform: translateY(-2px);
+}
+
+/* ==========================================================================
+   5. News Section
+   ========================================================================== */
+.news-section {
+  background: var(--nav-bg);
+  padding: 15px 20px;
+  border-radius: 5px;
+}
+
+.news-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.news-item {
+  display: flex;
+  margin-bottom: 12px;
+  align-items: baseline;
+}
+
+.news-date {
+  flex: 0 0 90px;
+  font-weight: 600;
+  color: var(--text-color);
+  font-size: 0.95rem;
+}
+
+.news-text {
+  flex: 1;
+  margin-left: 15px;
+}
+
+/* ==========================================================================
+   6. Research Page & Publications
+   ========================================================================== */
+main h2 a {
+  color: var(--text-color);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+main h2 a:hover {
+  color: var(--link-color);
+  text-decoration: underline;
+}
+
+.pub-item { margin-bottom: 20px; }
+.pub-title { font-weight: bold; }
+.pub-authors { color: var(--text-color); }
+.pub-venue { font-style: italic; }
+
+.pub-venue a.venue-text-link {
+  color: var(--text-color);
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+.pub-venue a.venue-text-link:hover {
+  color: var(--link-color);
+  text-decoration: underline;
+}
+
+.pub-venue a.venue-icon-link {
+  color: var(--text-color);
+  display: inline-block;
+  transition: color 0.3s ease, transform 0.2s ease;
+}
+
+.pub-venue a.venue-icon-link:hover {
+  color: var(--link-color) !important;
+  transform: translateY(-2px);
+}
+
+.pub-links a {
+  font-size: 0.9em;
+  border: 1px solid var(--link-color);
+  padding: 2px 8px;
+  border-radius: 4px;
+  margin-right: 5px;
+  text-decoration: none;
+}
+
+.pub-links a:hover {
+  background-color: var(--link-color);
+  color: var(--bg-color);
+}
+
+/* ==========================================================================
+   7. Footer
+   ========================================================================== */
+footer {
+  text-align: center;
+  padding-bottom: 30px;
+  color: var(--text-color);
+  opacity: 0.6;
+  font-size: 0.85rem;
+}
+
+footer p {
+  margin: 0;
+}
+
+/* ==========================================================================
    8. Responsive Design (Mobile Support)
    ========================================================================== */
 @media (max-width: 768px) {
@@ -364,14 +713,13 @@ footer p {
     left: 0;
     width: 100%;
     height: 100%;
-    background: rgba(0, 0, 0, 0.6); /* Dark semi-transparent background */
+    background: rgba(0, 0, 0, 0.6);
     opacity: 0;
     visibility: hidden;
     transition: opacity 0.3s ease;
-    z-index: 900; /* Sits directly above the page content */
+    z-index: 900;
   }
 
-  /* Reveal overlay when menu is open */
   body.menu-open::after {
     opacity: 1;
     visibility: visible;
@@ -380,13 +728,18 @@ footer p {
   /* --- 1. Header & Navigation Fixes --- */
   header {
     flex-direction: row;
+
+    margin-left: -20px;
+    margin-right: -20px;
+    padding-left: 20px;
+    padding-right: 20px;
     padding-bottom: 15px;
-    background-color: var(--bg-color); /* Keeps header solid above the overlay */
-    z-index: 1000; /* Keeps header above the overlay */
+
+    background-color: var(--bg-color);
+    z-index: 1000;
     transition: border-color 0.3s ease;
   }
 
-  /* Removes the header's bottom border when menu is open for a seamless look */
   body.menu-open header {
     border-bottom-color: transparent;
   }
@@ -395,12 +748,10 @@ footer p {
     font-size: 1.4rem;
   }
 
-  /* Reveal Hamburger on Mobile */
   .hamburger {
     display: block;
   }
 
-  /* Hamburger to 'X' Animation */
   .hamburger.active .bar:nth-child(1) {
     transform: translateY(8px) rotate(45deg);
   }
@@ -414,25 +765,25 @@ footer p {
   /* Full-Width Dropdown Menu Configuration */
   nav {
     position: absolute;
-    top: 100%; /* Sits exactly at the bottom of the header */
-    left: -20px; /* Counteracts body padding to stretch full width */
-    width: calc(100% + 40px); /* Spans the entire screen */
+    top: 100%;
+    left: 0;
+    right: 0;
+    width: 100%;
     background-color: var(--bg-color);
     flex-direction: column;
-    align-items: flex-end; /* Text aligns to the right */
-    padding: 10px 40px 30px 20px;
-    gap: 20px;
-    border-bottom: 1px solid var(--border-color); /* The new separator line */
-    z-index: 999; /* Sits above overlay, below header */
+    align-items: flex-end;
 
-    /* Hidden by default */
+    padding: 10px 20px 30px 20px;
+    gap: 20px;
+    border-bottom: 1px solid var(--border-color);
+    z-index: 999;
+
     opacity: 0;
     visibility: hidden;
     transform: translateY(-10px);
     transition: all 0.3s ease;
   }
 
-  /* Reveal Menu on click */
   nav.active {
     opacity: 1;
     visibility: visible;
@@ -446,6 +797,7 @@ footer p {
 
   #theme-toggle {
     margin-left: 0;
+    padding-right: 0;
   }
 
   /* --- 2. About Page Layout Fixes --- */
