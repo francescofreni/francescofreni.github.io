@@ -365,7 +365,7 @@ footer p {
   }
 
   nav a {
-    margin-left: 0; /* Removes the rigid desktop margins */
+    margin-left: 0;
   }
 
   #theme-toggle {
@@ -375,15 +375,16 @@ footer p {
   /* --- 2. About Page Layout Fixes --- */
   .hero-title h1 {
     font-size: 2.4rem;
+    text-align: center;
   }
 
   .hero-title p {
     font-size: 1.1rem;
-    text-align: center; /* Centers the subtitle nicely on mobile */
+    text-align: center;
   }
 
   .profile-container {
-    flex-direction: column-reverse; /* Puts image above text */
+    flex-direction: column-reverse;
     gap: 30px;
     align-items: center;
   }
