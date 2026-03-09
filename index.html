@@ -16,6 +16,13 @@
         <div class="hidden-title">
             <a href="index.html"><strong>Francesco</strong> Freni</a>
         </div>
+
+        <button class="hamburger" aria-label="Menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
+
         <nav>
             <a href="index.html" class="active">About</a>
             <a href="research.html">Research</a>
@@ -95,6 +102,7 @@
     </footer>
 
     <script>
+        // Dark Mode Logic
         const toggleBtn = document.getElementById('theme-toggle');
         const root = document.documentElement;
 
@@ -115,6 +123,15 @@
                 localStorage.setItem('theme', 'dark');
                 toggleBtn.innerHTML = sunIcon;
             }
+        });
+
+        // Mobile Menu Dropdown Logic
+        const hamburger = document.querySelector(".hamburger");
+        const navMenu = document.querySelector("nav");
+
+        hamburger.addEventListener("click", () => {
+            hamburger.classList.toggle("active");
+            navMenu.classList.toggle("active");
         });
     </script>
 </body>

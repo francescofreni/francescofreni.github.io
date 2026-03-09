@@ -16,6 +16,13 @@
         <div>
             <a href="index.html"><strong>Francesco</strong> Freni</a>
         </div>
+
+        <button class="hamburger" aria-label="Menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
+
         <nav>
             <a href="index.html">About</a>
             <a href="research.html">Research</a>
@@ -64,11 +71,15 @@
     </footer>
 
     <script>
+        // Dark Mode Logic
         const toggleBtn = document.getElementById('theme-toggle');
         const root = document.documentElement;
+
         const sunIcon = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4" /><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" /></svg>`;
         const moonIcon = `<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" fill-rule="evenodd" d="M21 15.6A8.9 8.9 0 1 1 12.4 3 a7.1 7.1 0 0 0 8.6 12.6z"/></svg>`;
+
         toggleBtn.innerHTML = root.getAttribute('data-theme') === 'dark' ? sunIcon : moonIcon;
+
         toggleBtn.addEventListener('click', () => {
             const isDark = root.getAttribute('data-theme') === 'dark';
             if (isDark) {
@@ -80,6 +91,15 @@
                 localStorage.setItem('theme', 'dark');
                 toggleBtn.innerHTML = sunIcon;
             }
+        });
+
+        // Mobile Menu Dropdown Logic
+        const hamburger = document.querySelector(".hamburger");
+        const navMenu = document.querySelector("nav");
+
+        hamburger.addEventListener("click", () => {
+            hamburger.classList.toggle("active");
+            navMenu.classList.toggle("active");
         });
     </script>
 </body>

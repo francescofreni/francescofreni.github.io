@@ -16,6 +16,13 @@
         <div>
             <a href="index.html"><strong>Francesco</strong> Freni</a>
         </div>
+
+        <button class="hamburger" aria-label="Menu">
+            <span class="bar"></span>
+            <span class="bar"></span>
+            <span class="bar"></span>
+        </button>
+
         <nav>
             <a href="index.html">About</a>
             <a href="research.html" class="active">Research</a>
@@ -39,23 +46,6 @@
                 </div>
             </div>
         </section>
-
-<!--        <hr class="separator">-->
-
-<!--        <section>-->
-<!--            <h2>Peer-Reviewed</h2>-->
-<!--            <div class="pub-item">-->
-<!--                <div class="pub-title">-->
-<!--                    <a href="link-to-your-pdf.pdf">A Novel Approach to Academic Web Design</a>-->
-<!--                </div>-->
-<!--                <div class="pub-authors"><strong>Francesco Freni</strong>, John Smith</div>-->
-<!--                <div class="pub-venue"><a href="link-to-journal-page" class="venue-text-link">Journal of Great Web Design (JGWD)</a> &middot; 2026 &middot;-->
-<!--                    <a href="link-to-code-repo" aria-label="GitHub Code" title="GitHub Code" class="venue-icon-link">-->
-<!--                        <svg class="icon" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.75" stroke-linecap="round" stroke-linejoin="round" style="width: 1.1em; height: 1.1em; vertical-align: text-bottom;"><path d="M15 22v-4a4.8 4.8 0 0 0-1-3.5c3 0 6-2 6-5.5.08-1.25-.27-2.48-1-3.5.28-1.15.28-2.35 0-3.5 0 0-1 0-3 1.5-2.64-.5-5.36-.5-8 0C6 2 5 2 5 2c-.3 1.15-.3 2.35 0 3.5A5.403 5.403 0 0 0 4 9c0 3.5 3 5.5 6 5.5-.39.49-.68 1.05-.85 1.65-.17.6-.22 1.23-.15 1.85v4"/><path d="M9 18c-4.51 2-5-2-7-2"/></svg>-->
-<!--                    </a>-->
-<!--                </div>-->
-<!--            </div>-->
-<!--        </section>-->
     </main>
 
     <footer>
@@ -64,11 +54,15 @@
     </footer>
 
     <script>
+        // Dark Mode Logic
         const toggleBtn = document.getElementById('theme-toggle');
         const root = document.documentElement;
+
         const sunIcon = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="4" /><path d="M12 2v2M12 20v2M4.93 4.93l1.41 1.41M17.66 17.66l1.41 1.41M2 12h2M20 12h2M4.93 19.07l1.41-1.41M17.66 6.34l1.41-1.41" /></svg>`;
         const moonIcon = `<svg viewBox="0 0 24 24" aria-hidden="true"><path fill="currentColor" fill-rule="evenodd" d="M21 15.6A8.9 8.9 0 1 1 12.4 3 a7.1 7.1 0 0 0 8.6 12.6z"/></svg>`;
+
         toggleBtn.innerHTML = root.getAttribute('data-theme') === 'dark' ? sunIcon : moonIcon;
+
         toggleBtn.addEventListener('click', () => {
             const isDark = root.getAttribute('data-theme') === 'dark';
             if (isDark) {
@@ -80,6 +74,15 @@
                 localStorage.setItem('theme', 'dark');
                 toggleBtn.innerHTML = sunIcon;
             }
+        });
+
+        // Mobile Menu Dropdown Logic
+        const hamburger = document.querySelector(".hamburger");
+        const navMenu = document.querySelector("nav");
+
+        hamburger.addEventListener("click", () => {
+            hamburger.classList.toggle("active");
+            navMenu.classList.toggle("active");
         });
     </script>
 </body>

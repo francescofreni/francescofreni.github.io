@@ -69,6 +69,7 @@ header {
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: relative; /* Needed to anchor the mobile dropdown */
 }
 
 header h2 {
@@ -125,7 +126,7 @@ nav a:hover {
   display: flex;
   align-items: center;
   padding: 5px;
-  transition: all 200ms ease;
+  transition: transform 0.2s ease;
 }
 
 #theme-toggle svg {
@@ -138,28 +139,48 @@ nav a:hover {
   transform: translateY(-2px);
 }
 
+/* Hamburger Icon Base (Hidden on Desktop) */
+.hamburger {
+  display: none;
+  cursor: pointer;
+  border: none;
+  background: none;
+  padding: 0;
+  z-index: 1000;
+}
+
+.hamburger .bar {
+  display: block;
+  width: 25px;
+  height: 3px;
+  margin: 5px auto;
+  transition: all 0.3s ease-in-out;
+  background-color: var(--text-color);
+  border-radius: 3px;
+}
+
 /* ==========================================================================
    4. About Page & Profile Section
    ========================================================================== */
 .hero-title {
   margin-top: 10px;
-  margin-bottom: 25px; /* Added more space between subtitle and content */
+  margin-bottom: 25px;
 }
 
 .hero-title h1 {
-  font-size: 3.2rem; /* Slightly larger to match the bold presence in the image */
+  font-size: 3.2rem;
   font-weight: 500;
   margin: 0 0 8px 0;
   line-height: 1.2;
 }
 
 .hero-title h1 strong {
-  font-weight: 800; /* Extra bold for the first name */
+  font-weight: 800;
 }
 
 .hero-title p {
   font-size: 1.25rem;
-  font-weight: 700; /* Made bolder to match the screenshot */
+  font-weight: 700;
   margin: 0;
   color: var(--text-color);
   opacity: 0.9;
@@ -167,24 +188,23 @@ nav a:hover {
 
 .profile-container {
   display: flex;
-  gap: 50px; /* Widened the gap between text and image for a cleaner look */
+  gap: 50px;
   align-items: flex-start;
   justify-content: space-between;
   margin-bottom: 40px;
 }
 
-/* Specifically targets the text column to fill available space */
 .profile-container > div:first-child {
   flex: 1;
-  line-height: 1.7; /* Slightly more breathable text */
+  line-height: 1.7;
 }
 
 .profile-container > div:first-child p:first-child {
-  margin-top: 0; /* Ensures the text aligns perfectly with the top of the image */
+  margin-top: 0;
 }
 
 .profile-pic-column {
-  flex: 0 0 240px; /* Sets a fixed, slightly larger width for the right column */
+  flex: 0 0 240px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -192,15 +212,15 @@ nav a:hover {
 
 .profile-pic {
   width: 100%;
-  border-radius: 12px; /* Softer, more modern rounded corners like the image */
-  box-shadow: 0 6px 16px rgba(0,0,0,0.08); /* Softer, more diffused shadow */
+  border-radius: 12px;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.08);
   object-fit: cover;
 }
 
 /* Social Icons */
 .social-icons {
   display: flex;
-  gap: 18px; /* Slightly more breathing room between icons */
+  gap: 18px;
   margin-top: 20px;
   justify-content: center;
   width: 100%;
@@ -208,13 +228,13 @@ nav a:hover {
 
 .social-icons a {
   color: var(--text-color);
-  opacity: 0.55; /* Makes them a more subtle grey, like the screenshot */
+  opacity: 0.55;
   display: inline-block;
   transition: color 0.3s ease, opacity 0.3s ease, transform 0.2s ease;
 }
 
 .social-icons a svg {
-  width: 26px; /* Slightly larger icons */
+  width: 26px;
   height: 26px;
 }
 
@@ -260,7 +280,6 @@ nav a:hover {
 /* ==========================================================================
    6. Research Page & Publications
    ========================================================================== */
-/* Exceptions for links inside h2 tags (like university links) */
 main h2 a {
   color: var(--text-color);
   text-decoration: none;
@@ -272,23 +291,11 @@ main h2 a:hover {
   text-decoration: underline;
 }
 
-.pub-item {
-  margin-bottom: 20px;
-}
+.pub-item { margin-bottom: 20px; }
+.pub-title { font-weight: bold; }
+.pub-authors { color: var(--text-color); }
+.pub-venue { font-style: italic; }
 
-.pub-title {
-  font-weight: bold;
-}
-
-.pub-authors {
-  color: var(--text-color);
-}
-
-.pub-venue {
-  font-style: italic;
-}
-
-/* Publication Venue Links (arXiv / Journal) */
 .pub-venue a.venue-text-link {
   color: var(--text-color);
   text-decoration: none;
@@ -300,7 +307,6 @@ main h2 a:hover {
   text-decoration: underline;
 }
 
-/* Publication Icon Links (GitHub) */
 .pub-venue a.venue-icon-link {
   color: var(--text-color);
   display: inline-block;
@@ -312,7 +318,6 @@ main h2 a:hover {
   transform: translateY(-2px);
 }
 
-/* Old standard publication link buttons (kept for backward compatibility) */
 .pub-links a {
   font-size: 0.9em;
   border: 1px solid var(--link-color);
@@ -348,24 +353,62 @@ footer p {
 @media (max-width: 768px) {
   /* --- 1. Header & Navigation Fixes --- */
   header {
-    flex-direction: column; /* Stacks your name above the menu */
-    gap: 15px; /* Adds space between your name and the menu */
+    flex-direction: row; /* Keep name and hamburger on same line */
     padding-bottom: 15px;
   }
 
   header div a {
-    font-size: 1.3rem; /* Slightly shrinks your name in the top left */
+    font-size: 1.4rem;
   }
 
+  /* Reveal Hamburger on Mobile */
+  .hamburger {
+    display: block;
+  }
+
+  /* Hamburger to 'X' Animation */
+  .hamburger.active .bar:nth-child(1) {
+    transform: translateY(8px) rotate(45deg);
+  }
+  .hamburger.active .bar:nth-child(2) {
+    opacity: 0;
+  }
+  .hamburger.active .bar:nth-child(3) {
+    transform: translateY(-8px) rotate(-45deg);
+  }
+
+  /* Dropdown Menu Configuration */
   nav {
-    width: 100%;
-    justify-content: center; /* Centers all the links */
-    flex-wrap: wrap; /* Allows links to wrap if the screen is super narrow */
-    gap: 15px; /* Adds even spacing between links */
+    position: absolute;
+    top: 65px; /* Sits right under the header */
+    right: 0;
+    background-color: var(--bg-color);
+    flex-direction: column;
+    align-items: flex-end; /* Text aligns to the right */
+    padding: 15px 25px;
+    gap: 20px;
+    border-radius: 8px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    border: 1px solid var(--border-color);
+    z-index: 999;
+
+    /* Hidden by default */
+    opacity: 0;
+    visibility: hidden;
+    transform: translateY(-10px);
+    transition: all 0.3s ease;
+  }
+
+  /* Reveal Menu on click */
+  nav.active {
+    opacity: 1;
+    visibility: visible;
+    transform: translateY(0);
   }
 
   nav a {
     margin-left: 0;
+    font-size: 1.2rem;
   }
 
   #theme-toggle {
