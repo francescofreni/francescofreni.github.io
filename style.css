@@ -842,3 +842,9 @@ footer p {
   opacity: 0.75;
   margin-top: 6px;
 }
+
+.pub-note-separator {
+  border: 0;
+  border-top: 1px solid var(--border-color);
+  margin: 24px 0 10px;
+}
