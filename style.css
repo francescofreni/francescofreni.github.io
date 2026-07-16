@@ -839,7 +839,7 @@ footer p {
   text-align: right;
   color: var(--text-color);
   opacity: 0.75;
-  margin-top: 6px;
+  margin-top: 2px;
 }
 
 .pub-note-separator {
