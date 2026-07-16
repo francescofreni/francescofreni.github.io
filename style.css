@@ -836,7 +836,6 @@ footer p {
 
 .pub-note {
   font-size: 0.9rem;
-  font-style: italic;
   text-align: right;
   color: var(--text-color);
   opacity: 0.75;
@@ -844,7 +843,5 @@ footer p {
 }
 
 .pub-note-separator {
-  border: 0;
-  border-top: 1px solid var(--border-color);
   margin: 24px 0 10px;
 }
